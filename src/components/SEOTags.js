@@ -1,7 +1,7 @@
-import React from "react"
-import PropTypes from "prop-types"
-import Helmet from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react';
+import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
+import { useStaticQuery, graphql } from 'gatsby';
 
 const SEOTags = ({ metaDescription, lang, meta, pageTitle }) => {
   const data = useStaticQuery(
@@ -14,8 +14,8 @@ const SEOTags = ({ metaDescription, lang, meta, pageTitle }) => {
         }	
       }
   `);
-  const siteTitle = data.silverStripeDataObject.SilverStripeSiteConfig.title;
 
+  const siteTitle = data.silverStripeDataObject.SilverStripeSiteConfig.title;
 
   return (
     <Helmet
@@ -56,19 +56,19 @@ const SEOTags = ({ metaDescription, lang, meta, pageTitle }) => {
       ].concat(meta)}
     />
   )
-}
+};
 
 SEOTags.defaultProps = {
   lang: `en`,
   meta: [],
   metaDescription: ``,
-}
+};
 
 SEOTags.propTypes = {
   metaDescription: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   pageTitle: PropTypes.string.isRequired,
-}
+};
 
 export default SEOTags
