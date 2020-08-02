@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 
-const Block = (props) => {
-  console.log(props);
+const ElementContent = (props) => {
   const baseElement = props.DNADesignBaseElement;
   const elementContent = props.DNADesignElementContent;
 
@@ -22,22 +21,22 @@ const Block = (props) => {
   )
 };
 
-Block.defaultProps = {};
+ElementContent.defaultProps = {};
 
-Block.propTypes = {
+ElementContent.propTypes = {
   uuid: PropTypes.string,
   className: PropTypes.string,
   DNADesignBaseElement: PropTypes.shape({
     title: PropTypes.string,
-    showTitle: PropTypes.string,
-    sort: PropTypes.string,
+    showTitle: PropTypes.number,
+    sort: PropTypes.number,
   }),
   DNADesignElementContent: PropTypes.shape({
     html: PropTypes.string,
   }),
 };
 
-export default Block;
+export default ElementContent;
 
 export const query = graphql`
 fragment ElementContentFragment on SilverStripeDataObject {

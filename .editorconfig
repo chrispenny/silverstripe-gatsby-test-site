@@ -14,7 +14,7 @@ trim_trailing_whitespace = true
 [*.md]
 trim_trailing_whitespace = false
 
-[*.{yml,js,json,css,scss,feature,eslintrc,vue}]
+[*.{yml,js,jsx,json,css,scss,feature,eslintrc,vue}]
 indent_size = 2
 
 [composer.json]

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {graphql} from "gatsby";
+import {graphql} from 'gatsby';
 
-const Block = (props) => {
+const ImageWithText = (props) => {
   const baseElement = props.DNADesignBaseElement;
   const imageWithText = props.AppImageWithTextBlock;
 
@@ -13,35 +13,47 @@ const Block = (props) => {
   const headingStyle = imageWithText.headingStyle;
   const imageAlignment = imageWithText.imageAlignment;
 
+  const image = imageWithText.Image;
+  const imageLink = image.link;
+  const imageTitle = image.SilverStripeFile.title;
+
   return (
     <div>
       { showTitle
         ? <h2>{title} {headingStyle} {imageAlignment}</h2>
         : null }
 
+      <img src={`http://gatsby.backend/${imageLink}`} alt={imageTitle} />
+
       <div dangerouslySetInnerHTML={{__html: content}}/>
     </div>
   )
 };
 
-Block.defaultProps = {};
+ImageWithText.defaultProps = {};
 
-Block.propTypes = {
+ImageWithText.propTypes = {
   uuid: PropTypes.string,
   className: PropTypes.string,
   DNADesignBaseElement: PropTypes.shape({
     title: PropTypes.string,
-    showTitle: PropTypes.string,
-    sort: PropTypes.string,
+    showTitle: PropTypes.number,
+    sort: PropTypes.number,
   }),
   AppImageWithTextBlock: PropTypes.shape({
     content: PropTypes.string,
     headingStyle: PropTypes.string,
     imageAlignment: PropTypes.string,
+    Image: PropTypes.shape({
+      link: PropTypes.string,
+      SilverStripeFile: PropTypes.shape({
+        title: PropTypes.string,
+      }),
+    }),
   }),
 };
 
-export default Block;
+export default ImageWithText;
 
 export const query = graphql`
 fragment ImageWithTextFragment on SilverStripeDataObject {
@@ -53,6 +65,12 @@ fragment ImageWithTextFragment on SilverStripeDataObject {
             content
             headingStyle
             imageAlignment
+            Image {
+              SilverStripeFile {
+                title
+              }
+              link
+            }
           }
         }
       }

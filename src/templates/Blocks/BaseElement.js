@@ -1,23 +1,23 @@
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 
-const Block = () => (
+const BaseElement = () => (
   null
 );
 
-Block.defaultProps = {};
+BaseElement.defaultProps = {};
 
-Block.propTypes = {
+BaseElement.propTypes = {
   uuid: PropTypes.string,
   className: PropTypes.string,
   DNADesignBaseElement: PropTypes.shape({
     title: PropTypes.string,
-    showTitle: PropTypes.string,
-    sort: PropTypes.string,
+    showTitle: PropTypes.number,
+    sort: PropTypes.number,
   }),
 };
 
-export default Block;
+export default BaseElement;
 
 export const query = graphql`
 fragment BaseElementFragment on SilverStripeDataObject {

@@ -5,7 +5,7 @@ import { getChildren, isLevel, getMenu } from 'silverstripe-gatsby-helpers';
 import Layout from '../Page';
 import SEOTags from '../../components/SEOTags';
 import Breadcrumbs from '../../components/Breadcrumbs';
-import Elements from "../../components/elements";
+import Elements from "../Blocks";
 
 const Page = ({ data: { silverStripeDataObject } }) => {
   const { title, content } = silverStripeDataObject.SilverStripeSiteTree;
@@ -43,6 +43,7 @@ const Page = ({ data: { silverStripeDataObject } }) => {
 
               return (
                 <Element
+                  key={element.uuid}
                   { ...element }
                 />
               );
@@ -82,6 +83,7 @@ export const pageQuery = graphql`
 			...BaseElementFragment
 			...ElementContentFragment
 			...ImageWithTextFragment
+			...TestimonialPromoFragment
 		}
 	}
 `;
